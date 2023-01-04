@@ -1,28 +1,32 @@
-import akka.actor.{Actor, ActorRef}
-import akka.pattern.ask
-import akka.util.Timeout
+import SleepActor.Call
+import akka.actor.Actor
+import com.github.nscala_time.time.Imports.DateTime
 
-import scala.concurrent.Await
-import scala.concurrent.duration._
+object SleepActor {
+  case class Call(url: String)
+}
 
-class SleepActor(rsleepActor: ActorRef) extends Actor {
-  implicit private val timeout: Timeout = Timeout(5.seconds)
+class SleepActor(req: Int, sec: Long) extends Actor {
+  private var canReqCount = req
+  private var nextResetTime = 0L
 
-  override def receive = {
-    case "call" => loop()
+  def receive = {
+    case Call(url) =>
+      call()
+      println(url)
   }
 
-  def loop(): Unit = {
-    val f = (rsleepActor ? "is").mapTo[Boolean]
-    Await.ready(f, Duration.Inf)
-
-    if (f.value.get.get) {
-      println("true")
-      rsleepActor ! "minus"
+  private def call() =
+    if (canReqCount == req) {
+      nextResetTime = getNextResetTime
+      canReqCount -= 1
+    } else if (canReqCount <= 0) {
+      Thread.sleep((nextResetTime - DateTime.now().getMillis).max(0))
+      nextResetTime = getNextResetTime
+      canReqCount = req - 1
     } else {
-      println("false")
-      Thread.sleep(1000)
-      loop()
+      canReqCount -= 1
     }
-  }
+
+  private def getNextResetTime = DateTime.now().getMillis + sec
 }

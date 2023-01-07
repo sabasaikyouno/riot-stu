@@ -30,4 +30,6 @@ object SleepCall {
     Thread.sleep(sleepTime(defaultSleepTime))
     a
   }
+
+  implicit def sleepImp(sleepCall: SleepCall) = sleepCall.sleep
 }

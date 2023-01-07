@@ -26,8 +26,8 @@ class SleepCall(req: Int, sec: Long) {
 object SleepCall {
   def apply(req: Int, sec: Long): SleepCall = new SleepCall(req, sec)
 
-  def call(url: String)(implicit sleepTime: Long => Long, defaultSleepTime: Long = 0) = {
+  def call[A](a: => A)(implicit sleepTime: Long => Long, defaultSleepTime: Long = 0) = {
     Thread.sleep(sleepTime(defaultSleepTime))
-    url
+    a
   }
 }

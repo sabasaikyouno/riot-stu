@@ -1,3 +1,5 @@
+import SleepActor.Call
+import akka.actor.{ActorSystem, Props}
 import com.github.nscala_time.time.Imports.DateTime
 
 class SleepCall(req: Int, sec: Long) {
@@ -24,11 +26,13 @@ class SleepCall(req: Int, sec: Long) {
 }
 
 object SleepCall {
+  private val actorSystem = ActorSystem("SleepActor")
+  private val sleepActor = actorSystem.actorOf(Props(new SleepActor))
+
   def apply(req: Int, sec: Long): SleepCall = new SleepCall(req, sec)
 
   def call[A](a: => A)(implicit sleepTime: Long => Long, defaultSleepTime: Long = 0) = {
-    Thread.sleep(sleepTime(defaultSleepTime))
-    a
+    sleepActor ! Call(() => a, sleepTime, defaultSleepTime)
   }
 
   implicit def sleepImp(sleepCall: SleepCall) = sleepCall.sleep

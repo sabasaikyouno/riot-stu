@@ -26,5 +26,7 @@ class Sleep(req: Int, val sec: Long) {
 object Sleep {
   def apply(req: Int, sec: Long): Sleep = new Sleep(req, sec)
 
-  implicit def sleepImp(sleepCall: Sleep) = sleepCall.sleep
+  implicit def sleepFImp(sleepCall: Sleep) = sleepCall.sleep
+  implicit def sleepImp(reqSec: (Int, Long)) = apply(reqSec._1, reqSec._2)
+  implicit def sleepIntImp(reqSec: (Int, Int)) = apply(reqSec._1, reqSec._2)
 }

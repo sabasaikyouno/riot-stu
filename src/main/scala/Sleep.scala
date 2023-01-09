@@ -1,6 +1,6 @@
 import com.github.nscala_time.time.Imports.DateTime
 
-class Sleep(req: Int, sec: Long) {
+class Sleep(req: Int, val sec: Long) {
   private var canReqCount = req
   private var nextResetTime = 0L
 

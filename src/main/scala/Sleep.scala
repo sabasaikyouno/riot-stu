@@ -11,7 +11,7 @@ class Sleep(req: Int, sec: Long) {
       nextResetTime = getNextResetTime
       canReqCount -= 1
     } else if (canReqCount <= 0) {
-      nextResetTime = getNextResetTime
+      nextResetTime = getNextResetTime + sleepTime
       canReqCount = req - 1
     } else {
       canReqCount -= 1

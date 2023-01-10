@@ -1,4 +1,5 @@
-import Sleep._
+import sleep.Sleep._
+import sleep.SleepCall
 
 import scala.concurrent.duration._
 

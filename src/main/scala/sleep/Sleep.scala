@@ -1,4 +1,7 @@
+package sleep
+
 import com.github.nscala_time.time.Imports.DateTime
+
 import scala.concurrent.duration._
 
 class Sleep(req: Int, val sec: Long) {

@@ -1,5 +1,7 @@
-import SleepActor.Call
+package sleep
+
 import akka.actor.Actor
+import sleep.SleepActor.Call
 
 object SleepActor {
   case class Call[A](a: () => A, sleepTime: Long => Long, defaultSleepTime: Long = 0)

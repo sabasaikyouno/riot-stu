@@ -1,4 +1,5 @@
 import com.github.nscala_time.time.Imports.DateTime
+import scala.concurrent.duration._
 
 class Sleep(req: Int, val sec: Long) {
   private var canReqCount = req
@@ -29,4 +30,5 @@ object Sleep {
   implicit def sleepFImp(sleepCall: Sleep) = sleepCall.sleep
   implicit def sleepImp(reqSec: (Int, Long)) = apply(reqSec._1, reqSec._2)
   implicit def sleepIntImp(reqSec: (Int, Int)) = apply(reqSec._1, reqSec._2)
+  implicit def sleepDurImp(reqSec: (Int, FiniteDuration)) = apply(reqSec._1, reqSec._2.toMillis)
 }

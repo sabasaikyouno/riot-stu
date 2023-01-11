@@ -1,3 +1,4 @@
+import okhttp3.{OkHttpClient, Request}
 import sleep.Sleep._
 import sleep.SleepCall
 
@@ -5,9 +6,20 @@ import scala.concurrent.duration._
 
 class RiotCall(apiKey: String) {
   private val sleepCall = SleepCall((20, 1.seconds), (100, 2.minutes))
+  private val client = new OkHttpClient()
 
-  def getSummoner(name: String) = {
+  def getSummoner(name: String) = sleepCall.call {
     val url = s"https://jp1.api.riotgames.com/lol/summoner/v4/summoners/by-name/$name?api_key=$apiKey"
-    sleepCall.call(url)
+    getResponse(url)
+  }
+
+  private def getResponse(url: String) = {
+    val request = new Request.Builder().url(url).build()
+
+    client
+      .newCall(request)
+      .execute()
+      .body()
+      .string()
   }
 }

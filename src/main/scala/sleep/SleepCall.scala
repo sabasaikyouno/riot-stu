@@ -9,7 +9,7 @@ import scala.concurrent.duration._
 import scala.reflect.ClassTag
 
 class SleepCall(sleepTime: Long => Long, defaultSleepTime: Long, maxSleepTime: Long) {
-  private val actorSystem = ActorSystem("sleep.SleepActor")
+  private val actorSystem = ActorSystem("SleepActor")
   private val sleepActor = actorSystem.actorOf(Props(new SleepActor))
   implicit private val timeout: Timeout = Timeout(maxSleepTime.seconds)
 

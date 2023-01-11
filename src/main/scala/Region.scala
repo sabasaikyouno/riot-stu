@@ -1,4 +1,4 @@
-sealed abstract class Region(val region: String)
+sealed abstract class Region(val name: String)
 object Region {
   case object BR1 extends Region("br1")
   case object EUN1 extends Region("eun1")

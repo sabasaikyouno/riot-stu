@@ -16,4 +16,23 @@ object Region {
   case object TH2 extends Region("th2")
   case object TW2 extends Region("tw2")
   case object VN2 extends Region("vn2")
+
+  implicit def toRegion(name: String): Region = name match {
+    case "br1" => BR1
+    case "eun1" => EUN1
+    case "euw1" => EUW1
+    case "jp1" => JP1
+    case "kr" => KR
+    case "la1" => LA1
+    case "la2" => LA2
+    case "na1" => NA1
+    case "oc1" => OC1
+    case "tr1" => TR1
+    case "ru" => RU
+    case "ph2" => PH2
+    case "sg2" => SG2
+    case "th2" => TH2
+    case "tw2" => TW2
+    case "vn2" => VN2
+  }
 }

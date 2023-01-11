@@ -23,3 +23,7 @@ class RiotCall(apiKey: String, region: Region) {
       .string()
   }
 }
+
+object RiotCall {
+  def apply(apiKey: String, region: Region): RiotCall = new RiotCall(apiKey, region)
+}

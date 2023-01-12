@@ -25,15 +25,11 @@ trait MatchCall {
     request(url)
   }
 
-  def matchById(matchId: String) = {
-    val url = makeUrl(s"$matchId?")
-    request(url)
-  }
+  def matchById(matchId: String) =
+    request(makeUrl(s"$matchId?"))
 
-  def matchTimeline(matchId: String) = {
-    val url = makeUrl(s"$matchId/timeline?")
-    request(url)
-  }
+  def matchTimeline(matchId: String) =
+    request(makeUrl(s"$matchId/timeline?"))
 
   private def makeUrl(route: String) =
     s"https://${region.route}.api.riotgames.com/lol/match/v5/matches/${route}api_key=$apiKey"

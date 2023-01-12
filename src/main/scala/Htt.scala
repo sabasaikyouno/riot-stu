@@ -1,9 +1,10 @@
 import okhttp3.{OkHttpClient, Request}
+import sleep.SleepCall
 
 object Htt {
   private val client = new OkHttpClient()
 
-  def request(url: String) = {
+  def request(url: String)(implicit sleepCall: SleepCall) = sleepCall.call {
     val request = new Request.Builder().url(url).build()
 
     client

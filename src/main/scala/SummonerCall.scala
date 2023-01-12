@@ -2,12 +2,20 @@ import Htt.request
 import sleep.SleepCall
 
 trait SummonerCall {
-  protected val sleepCall: SleepCall
+  implicit protected val sleepCall: SleepCall
   protected val apiKey: String
   protected val region: Region
 
-  def summonersByName(name: String) = sleepCall.call {
-    val url = s"https://${region.name}.api.riotgames.com/lol/summoner/v4/summoners/by-name/$name?api_key=$apiKey"
-    request(url)
-  }
+  def summonerByAccount(accountId: String) =
+    request(makeUrl("by-account", accountId))
+
+
+  def summonersByName(name: String) =
+    request(makeUrl("by-name", name))
+
+  def summonerByPuuid(puuid: String) =
+    request(makeUrl("by-puuid", puuid))
+
+  private def makeUrl(route: String, param: String) =
+    s"https://${region.name}.api.riotgames.com/lol/summoner/v4/summoners/$route/$param?api_key=$apiKey"
 }

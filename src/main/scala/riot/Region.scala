@@ -1,3 +1,5 @@
+package riot
+
 sealed abstract class Region(val name: String, val route: String)
 object Region {
   case object BR1 extends Region("br1", "americas")

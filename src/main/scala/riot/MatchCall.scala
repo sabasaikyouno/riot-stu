@@ -1,4 +1,6 @@
-import Htt.request
+package riot
+
+import htt.Htt.request
 import sleep.SleepCall
 
 trait MatchCall {

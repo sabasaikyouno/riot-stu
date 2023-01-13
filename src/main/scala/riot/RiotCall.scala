@@ -1,3 +1,5 @@
+package riot
+
 import sleep.Sleep._
 import sleep.SleepCall
 

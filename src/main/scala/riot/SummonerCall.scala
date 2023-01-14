@@ -9,15 +9,18 @@ trait SummonerCall {
   protected val region: Region
 
   def summonerByAccount(accountId: String) =
-    request(makeUrl("by-account", accountId))
+    request(makeUrl(s"by-account/$accountId"))
 
 
   def summonersByName(name: String) =
-    request(makeUrl("by-name", name))
+    request(makeUrl(s"by-name/$name"))
 
   def summonerByPuuid(puuid: String) =
-    request(makeUrl("by-puuid", puuid))
+    request(makeUrl(s"by-puuid/$puuid"))
 
-  private def makeUrl(route: String, param: String) =
-    s"https://${region.name}.api.riotgames.com/lol/summoner/v4/summoners/$route/$param?api_key=$apiKey"
+  def summonerById(summonerId: String) =
+    request(makeUrl(summonerId))
+
+  private def makeUrl(route: String) =
+    s"https://${region.name}.api.riotgames.com/lol/summoner/v4/summoners/$route?api_key=$apiKey"
 }

@@ -16,7 +16,7 @@ object Htt {
       .string()
   }
 
-  def request(url: String, headers: (String, String)*) = {
+  def request(url: String, headers: (String, String)*)(implicit sleepCall: SleepCall) = sleepCall.call {
     val request = headers
       .foldLeft(new Request.Builder())((request, header) =>
         request.addHeader(header._1, header._2))

@@ -19,7 +19,7 @@ trait SummonerCall {
     request(makeUrl(s"by-puuid/$puuid"))
 
   def summonerByMe(authorization: String) =
-    request(makeUrl("me"), ("Authorization", authorization))
+    request(makeUrl("me"), "Authorization" -> authorization)
 
   def summonerById(summonerId: String) =
     request(makeUrl(summonerId))

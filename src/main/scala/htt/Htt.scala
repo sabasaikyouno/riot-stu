@@ -28,6 +28,5 @@ object Htt {
       .execute()
       .body()
       .string()
-
   }
 }

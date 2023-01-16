@@ -22,8 +22,8 @@ trait MatchCall {
     val queueParam = queueOpt.map(queue => s"queue=$queue&").getOrElse("")
     val typeParam = typeOpt.map(typE => s"type=$typE&").getOrElse("")
     val param = startTimeParam + endTimeParam + queueParam + typeParam
-
     val url = makeUrl(s"by-puuid/$puuid/ids?${param}start=$start&count=$count&")
+
     request(url)
   }
 

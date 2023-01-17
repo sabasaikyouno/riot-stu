@@ -3,12 +3,12 @@ package riot
 import htt.Htt.request
 import sleep.SleepCall
 
-trait MatchCall {
+trait MatchesCall {
   implicit protected val sleepCall: SleepCall
   protected val apiKey: String
   protected val region: Region
 
-  def matchByPuuid(
+  def matchesByPuuidCall(
     puuid: String,
     startTimeOpt: Option[Long] = None,
     endTimeOpt: Option[Long] = None,
@@ -27,10 +27,10 @@ trait MatchCall {
     request(url)
   }
 
-  def matchById(matchId: String) =
+  def matchesByIdCall(matchId: String) =
     request(makeUrl(s"$matchId?"))
 
-  def matchTimeline(matchId: String) =
+  def matchesTimelineCall(matchId: String) =
     request(makeUrl(s"$matchId/timeline?"))
 
   private def makeUrl(route: String) =

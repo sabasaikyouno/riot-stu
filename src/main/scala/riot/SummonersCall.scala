@@ -3,25 +3,25 @@ package riot
 import htt.Htt.request
 import sleep.SleepCall
 
-trait SummonerCall {
+trait SummonersCall {
   implicit protected val sleepCall: SleepCall
   protected val apiKey: String
   protected val region: Region
 
-  def summonerByAccount(accountId: String) =
+  def summonersByAccountCall(accountId: String) =
     request(makeUrl(s"by-account/$accountId"))
 
 
-  def summonersByName(name: String) =
+  def summonersByNameCall(name: String) =
     request(makeUrl(s"by-name/$name"))
 
-  def summonerByPuuid(puuid: String) =
+  def summonersByPuuidCall(puuid: String) =
     request(makeUrl(s"by-puuid/$puuid"))
 
-  def summonerByMe(authorization: String) =
+  def summonersByMeCall(authorization: String) =
     request(makeUrl("me"), "Authorization" -> authorization)
 
-  def summonerById(summonerId: String) =
+  def summonersByIdCall(summonerId: String) =
     request(makeUrl(summonerId))
 
   private def makeUrl(route: String) =

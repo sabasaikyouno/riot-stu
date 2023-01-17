@@ -1,5 +1,7 @@
 package riot
 
+import io.circe.Decoder.Result
+import io.circe.Json
 import sleep.SleepCall
 import io.circe.generic.auto._
 import io.circe.parser._
@@ -12,32 +14,32 @@ class Riot(protected val apiKey: String, protected val region: Region) extends S
   protected val sleepCall: SleepCall = SleepCall((20, 1.seconds), (100, 2.minutes))
 
   def matchesByPuuid(puuid: String) =
-    matchesByPuuidCall(puuid).map(toDTO[List[String]])
+    matchesByPuuidCall(puuid).map(toDTO(_.as[List[String]]))
 
   def matchesById(matchId: String) =
-    matchesByIdCall(matchId).map(toDTO[MatchDTO])
+    matchesByIdCall(matchId).map(toDTO(_.as[MatchDTO]))
 
   def matchesTimeline(matchId: String) =
-    matchesTimelineCall(matchId).map(toDTO[MatchTimelineDTO])
+    matchesTimelineCall(matchId).map(toDTO(_.as[MatchTimelineDTO]))
 
   def summonersByAccount(accountId: String) =
-    summonersByAccountCall(accountId).map(toDTO[SummonerDTO])
+    summonersByAccountCall(accountId).map(toDTO(_.as[SummonerDTO]))
 
   def summonersByName(name: String) =
-    summonersByNameCall(name).map(toDTO[SummonerDTO])
+    summonersByNameCall(name).map(toDTO(_.as[SummonerDTO]))
 
   def summonersByPuuid(puuid: String) =
-    summonersByPuuidCall(puuid).map(toDTO[SummonerDTO])
+    summonersByPuuidCall(puuid).map(toDTO(_.as[SummonerDTO]))
 
   def summonersByMe(authorization: String) =
-    summonersByMeCall(authorization).map(toDTO[SummonerDTO])
+    summonersByMeCall(authorization).map(toDTO(_.as[SummonerDTO]))
 
   def summonersById(summonerId: String) =
-    summonersByIdCall(summonerId).map(toDTO[SummonerDTO])
+    summonersByIdCall(summonerId).map(toDTO(_.as[SummonerDTO]))
 
-  private def toDTO[A](body: String) =
+  private def toDTO[A](f: Json => Result[A])(body: String) =
     parse(body)
-      .flatMap(_.as[A])
+      .flatMap(f)
       .toOption
       .get
 }

@@ -10,8 +10,11 @@ import riot.models.{MatchDTO, MatchTimelineDTO, SummonerDTO}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.DurationInt
 
-class Riot(protected val apiKey: String, protected val region: Region) extends SummonersCall with MatchesCall {
-  protected val sleepCall: SleepCall = SleepCall((20, 1.seconds), (100, 2.minutes))
+class Riot(
+  protected val apiKey: String,
+  protected val region: Region,
+  protected val sleepCall: SleepCall
+) extends SummonersCall with MatchesCall {
 
   def matchesByPuuid(puuid: String) =
     matchesByPuuidCall(puuid).map(toDTO(_.as[List[String]]))
@@ -42,4 +45,10 @@ class Riot(protected val apiKey: String, protected val region: Region) extends S
       .flatMap(f)
       .toOption
       .get
+
+  def changeApiKey(newApiKey: String) = Riot(newApiKey, region, sleepCall)
+}
+
+object Riot {
+  def apply(apiKey: String, region: Region, sleepCall: SleepCall = SleepCall((20, 1.seconds), (100, 2.minutes))): Riot = new Riot(apiKey, region, sleepCall)
 }

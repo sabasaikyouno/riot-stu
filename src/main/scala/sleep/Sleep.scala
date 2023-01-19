@@ -31,7 +31,5 @@ object Sleep {
   def apply(req: Int, sec: Long): Sleep = new Sleep(req, sec)
 
   implicit def sleepFImp(sleepCall: Sleep) = sleepCall.sleep
-  implicit def sleepImp(reqSec: (Int, Long)) = apply(reqSec._1, reqSec._2)
-  implicit def sleepIntImp(reqSec: (Int, Int)) = apply(reqSec._1, reqSec._2)
-  implicit def sleepDurImp(reqSec: (Int, FiniteDuration)) = apply(reqSec._1, reqSec._2.toMillis)
+  implicit def sleepImp(reqSec: (Int, FiniteDuration)) = apply(reqSec._1, reqSec._2.toMillis)
 }

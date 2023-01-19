@@ -1,7 +1,6 @@
 package riot
 
-import io.circe.Decoder.Result
-import io.circe.{Decoder, Json}
+import io.circe.Decoder
 import sleep.SleepCall
 import io.circe.generic.auto._
 import io.circe.parser._

@@ -4,24 +4,23 @@ import htt.Htt.request
 import sleep.SleepCall
 
 trait SummonersCall {
-  implicit protected val sleepCall: SleepCall
+  protected implicit val sleepCall: SleepCall
   protected val apiKey: String
   protected val region: Region
 
-  def summonersByAccountCall(accountId: String) =
+  protected def summonersByAccountCall(accountId: String) =
     request(makeUrl(s"by-account/$accountId"))
 
-
-  def summonersByNameCall(name: String) =
+  protected def summonersByNameCall(name: String) =
     request(makeUrl(s"by-name/$name"))
 
-  def summonersByPuuidCall(puuid: String) =
+  protected def summonersByPuuidCall(puuid: String) =
     request(makeUrl(s"by-puuid/$puuid"))
 
-  def summonersByMeCall(authorization: String) =
+  protected def summonersByMeCall(authorization: String) =
     request(makeUrl("me"), "Authorization" -> authorization)
 
-  def summonersByIdCall(summonerId: String) =
+  protected def summonersByIdCall(summonerId: String) =
     request(makeUrl(summonerId))
 
   private def makeUrl(route: String) =

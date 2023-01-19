@@ -4,11 +4,11 @@ import htt.Htt.request
 import sleep.SleepCall
 
 trait MatchesCall {
-  implicit protected val sleepCall: SleepCall
+  protected implicit val sleepCall: SleepCall
   protected val apiKey: String
   protected val region: Region
 
-  def matchesByPuuidCall(
+  protected def matchesByPuuidCall(
     puuid: String,
     startTimeOpt: Option[Long] = None,
     endTimeOpt: Option[Long] = None,
@@ -27,10 +27,10 @@ trait MatchesCall {
     request(url)
   }
 
-  def matchesByIdCall(matchId: String) =
+  protected def matchesByIdCall(matchId: String) =
     request(makeUrl(s"$matchId?"))
 
-  def matchesTimelineCall(matchId: String) =
+  protected def matchesTimelineCall(matchId: String) =
     request(makeUrl(s"$matchId/timeline?"))
 
   private def makeUrl(route: String) =

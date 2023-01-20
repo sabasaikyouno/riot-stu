@@ -1,4 +1,4 @@
-package riot.models
+package riot.models.matches
 
 case class TeamDTO(
   bans: List[BanDTO],

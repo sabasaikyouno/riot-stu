@@ -4,7 +4,8 @@ import io.circe.Decoder
 import sleep.SleepCall
 import io.circe.generic.auto._
 import io.circe.parser._
-import riot.models.{MatchDTO, MatchTimelineDTO, SummonerDTO}
+import riot.models.summoners.SummonerDTO
+import riot.models.matches.{MatchDTO, MatchTimelineDTO}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.DurationInt
@@ -23,6 +24,9 @@ class Riot(
 
   def matchesTimeline(matchId: String) =
     matchesTimelineCall(matchId).map(toDTO[MatchTimelineDTO])
+
+  def matchesTimeline2(matchId: String) =
+    matchesTimelineCall(matchId)
 
   def summonersByAccount(accountId: String) =
     summonersByAccountCall(accountId).map(toDTO[SummonerDTO])

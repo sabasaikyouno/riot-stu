@@ -1,4 +1,4 @@
-package riot.models
+package riot.models.summoners
 
 case class SummonerDTO(
   accountId: String,

@@ -25,9 +25,6 @@ class Riot(
   def matchesTimeline(matchId: String) =
     matchesTimelineCall(matchId).map(toDTO[MatchTimelineDTO])
 
-  def matchesTimeline2(matchId: String) =
-    matchesTimelineCall(matchId)
-
   def summonersByAccount(accountId: String) =
     summonersByAccountCall(accountId).map(toDTO[SummonerDTO])
 

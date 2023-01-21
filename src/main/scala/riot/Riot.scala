@@ -4,8 +4,8 @@ import io.circe.Decoder
 import sleep.SleepCall
 import io.circe.generic.auto._
 import io.circe.parser._
-import riot.models.summoners.SummonerDTO
-import riot.models.matches.{MatchDTO, MatchTimelineDTO}
+import riot.models.summoners.SummonerDto
+import riot.models.matches.{MatchDto, MatchTimelineDto}
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.DurationInt
@@ -17,30 +17,30 @@ class Riot(
 ) extends SummonersCall with MatchesCall {
 
   def matchesByPuuid(puuid: String) =
-    matchesByPuuidCall(puuid).map(toDTO[List[String]])
+    matchesByPuuidCall(puuid).map(toDto[List[String]])
 
   def matchesById(matchId: String) =
-    matchesByIdCall(matchId).map(toDTO[MatchDTO])
+    matchesByIdCall(matchId).map(toDto[MatchDto])
 
   def matchesTimeline(matchId: String) =
-    matchesTimelineCall(matchId).map(toDTO[MatchTimelineDTO])
+    matchesTimelineCall(matchId).map(toDto[MatchTimelineDto])
 
   def summonersByAccount(accountId: String) =
-    summonersByAccountCall(accountId).map(toDTO[SummonerDTO])
+    summonersByAccountCall(accountId).map(toDto[SummonerDto])
 
   def summonersByName(name: String) =
-    summonersByNameCall(name).map(toDTO[SummonerDTO])
+    summonersByNameCall(name).map(toDto[SummonerDto])
 
   def summonersByPuuid(puuid: String) =
-    summonersByPuuidCall(puuid).map(toDTO[SummonerDTO])
+    summonersByPuuidCall(puuid).map(toDto[SummonerDto])
 
   def summonersByMe(authorization: String) =
-    summonersByMeCall(authorization).map(toDTO[SummonerDTO])
+    summonersByMeCall(authorization).map(toDto[SummonerDto])
 
   def summonersById(summonerId: String) =
-    summonersByIdCall(summonerId).map(toDTO[SummonerDTO])
+    summonersByIdCall(summonerId).map(toDto[SummonerDto])
 
-  private def toDTO[A](body: String)(implicit decoder: Decoder[A]) =
+  private def toDto[A](body: String)(implicit decoder: Decoder[A]) =
     decode(body)
       .toOption
       .get

@@ -1,4 +1,4 @@
 package riot.models.matches
 
 //TODO
-case class MatchTimelineDTO()
+case class MatchTimelineDto()

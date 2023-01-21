@@ -1,6 +1,6 @@
 package riot.models.matches
 
-case class BanDTO(
+case class BanDto(
   championId: Int,
   pickTurn: Int
 )

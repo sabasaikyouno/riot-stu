@@ -1,6 +1,6 @@
 package riot.models.matches
 
-case class ParticipantDTO(
+case class ParticipantDto(
   assists: Int,
   baronKills: Int,
   bountyLevel: Int,
@@ -56,7 +56,7 @@ case class ParticipantDTO(
   objectivesStolenAssists: Int,
   participantId: Int,
   pentaKills: Int,
-  perks: PerksDTO,
+  perks: PerksDto,
   physicalDamageDealt: Int,
   physicalDamageDealtToChampions: Int,
   physicalDamageTaken: Int,

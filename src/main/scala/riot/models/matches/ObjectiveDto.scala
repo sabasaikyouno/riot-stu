@@ -1,6 +1,6 @@
 package riot.models.matches
 
-case class ObjectiveDTO(
+case class ObjectiveDto(
   first: Boolean,
   kills: Int
 )

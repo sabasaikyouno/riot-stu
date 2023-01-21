@@ -1,6 +1,6 @@
 package riot.models.matches
 
-case class MetadataDTO(
+case class MetadataDto(
   dataVersion: String,
   matchId: String,
   participants: List[String]

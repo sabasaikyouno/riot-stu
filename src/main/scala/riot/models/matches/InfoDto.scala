@@ -1,6 +1,6 @@
 package riot.models.matches
 
-case class InfoDTO(
+case class InfoDto(
   gameCreation: Long,
   gameDuration: Long,
   gameEndTimestamp: Long,
@@ -11,9 +11,9 @@ case class InfoDTO(
   gameType: String,
   gameVersion: String,
   mapId: Int,
-  participants: List[ParticipantDTO],
+  participants: List[ParticipantDto],
   platformId: String,
   queueId: Int,
-  teams: List[TeamDTO],
+  teams: List[TeamDto],
   tournamentCode: String
 )

@@ -1,6 +1,6 @@
 package riot.models.summoners
 
-case class SummonerDTO(
+case class SummonerDto(
   accountId: String,
   profileIconId: Int,
   revisionDate: Long,

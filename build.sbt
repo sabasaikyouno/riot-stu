@@ -1,5 +1,5 @@
 name := "riot-stu"
-organization := ""
+organization := "com.github.sabasaikyouno"
 
 version := "0.1"
 

@@ -1,5 +1,5 @@
 name := "riot-stu"
-organization := "riot-stu"
+organization := "com.riot-stu"
 
 version := "0.1"
 

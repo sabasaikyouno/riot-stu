@@ -1,4 +1,5 @@
 name := "riot-stu"
+organization := ""
 
 version := "0.1"
 

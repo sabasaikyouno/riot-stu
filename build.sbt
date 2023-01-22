@@ -4,7 +4,7 @@ version := "0.1"
 
 scalaVersion := "2.13.10"
 
-publishTo := Some(Resolver.file("riot-stu", file("riot-stu-d"))(Patterns(true, Resolver.mavenStyleBasePattern)))
+publishTo := Some(Resolver.file("riot-stu", file("riot-stu"))(Patterns(true, Resolver.mavenStyleBasePattern)))
 
 libraryDependencies += "com.typesafe.akka" %% "akka-actor-typed" % "2.7.0"
 libraryDependencies += "com.github.nscala-time" %% "nscala-time" % "2.32.0"

@@ -1,14 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.github.sabasaikyouno.riot-stu</groupId>
+    <groupId>riot-stu</groupId>
     <artifactId>riot-stu_2.13</artifactId>
     <packaging>jar</packaging>
     <description>riot-stu</description>
     <version>0.1</version>
     <name>riot-stu</name>
     <organization>
-        <name>com.github.sabasaikyouno.riot-stu</name>
+        <name>riot-stu</name>
     </organization>
     <dependencies>
         <dependency>

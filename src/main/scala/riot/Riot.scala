@@ -16,16 +16,8 @@ class Riot(
   protected val sleepCall: SleepCall
 ) extends SummonersCall with MatchesCall {
 
-  def matchesByPuuid(
-    puuid: String,
-    startTimeOpt: Option[Long] = None,
-    endTimeOpt: Option[Long] = None,
-    queueOpt: Option[Int] = None,
-    typeOpt: Option[String] = None,
-    start: Int = 0,
-    count: Int = 20
-  ) =
-    matchesByPuuidCall(puuid, startTimeOpt, endTimeOpt, queueOpt, typeOpt, start, count).map(toDto[List[String]])
+  def matchesByPuuid(puuid: String) =
+    matchesByPuuidCall(puuid).map(toDto[List[String]])
 
   def matchesById(matchId: String) =
     matchesByIdCall(matchId).map(toDto[MatchDto])

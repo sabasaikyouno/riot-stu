@@ -10,12 +10,12 @@ trait MatchesCall {
 
   protected def matchesByPuuidCall(
     puuid: String,
-    startTimeOpt: Option[Long],
-    endTimeOpt: Option[Long],
-    queueOpt: Option[Int],
-    typeOpt: Option[String],
-    start: Int,
-    count: Int
+    startTimeOpt: Option[Long] = None,
+    endTimeOpt: Option[Long] = None,
+    queueOpt: Option[Int] = None,
+    typeOpt: Option[String] = None,
+    start: Int = 0,
+    count: Int = 20
   ) = {
     val startTimeParam = startTimeOpt.map(startTime => s"startTime=$startTime&").getOrElse("")
     val endTimeParam = endTimeOpt.map(endTime => s"endTime=$endTime&").getOrElse("")
